@@ -19,13 +19,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: 📦 Install Dependencies
-        working-directory: frontend
-        run: npm install
-
-      - name: 🔨 Build Production Bundle
-        working-directory: frontend
-        run: npm run build
+      - name: 📦 Install Depende
 
       - name: 🚀 Sync Files via FTP to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

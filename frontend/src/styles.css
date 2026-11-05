@@ -1,0 +1,93 @@
+/* TECHLA (PVT) LTD - Custom Cyber Aesthetics & Animations */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050813;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e3a8a;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0072ff;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+    background: rgba(13, 21, 39, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 114, 255, 0.15);
+}
+
+.glass-glow {
+    box-shadow: 0 0 35px rgba(0, 114, 255, 0.2);
+}
+
+/* Subtle Card Hover Glow */
+.service-card {
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Animated Neon Borders */
+@keyframes neonPulse {
+
+    0%,
+    100% {
+        border-color: rgba(0, 114, 255, 0.3);
+        box-shadow: 0 0 15px rgba(0, 114, 255, 0.15);
+    }
+
+    50% {
+        border-color: rgba(0, 240, 255, 0.6);
+        box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+    }
+}
+
+.neon-active {
+    animation: neonPulse 3s infinite ease-in-out;
+}
+
+/* Form inputs styling */
+input:focus,
+select:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.2);
+    border-color: #00f0ff !important;
+}
+
+/* Hardware Filter Active Buttons */
+.part-filter-btn.active {
+    background-color: #0072ff !important;
+    color: #ffffff !important;
+    border-color: #00f0ff !important;
+    box-shadow: 0 0 15px rgba(0, 114, 255, 0.4);
+}
+
+/* Preset button active state */
+.preset-btn.active {
+    border-color: #00f0ff !important;
+    background-color: rgba(0, 114, 255, 0.25) !important;
+    color: #00f0ff !important;
+    box-shadow: 0 0 15px rgba(0, 114, 255, 0.3);
+}
+
+/* Hardware Item Smooth Animation */
+.hardware-item {
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hardware-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 114, 255, 0.18);
+}
