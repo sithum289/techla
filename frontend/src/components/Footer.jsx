@@ -10,8 +10,8 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-techla-500/20 border border-techla-500/40 flex items-center justify-center text-cyanGlow">
-                <TechlaLogo className="w-5 h-5" />
+              <div className="w-10 h-10 rounded-lg bg-techla-500/20 border border-techla-500/40 flex items-center justify-center p-1 text-cyanGlow">
+                <TechlaLogo className="w-full h-full" />
               </div>
               <span className="font-heading font-black text-xl text-white">
                 TECH<span className="text-cyanGlow">LA</span> <span className="text-xs font-normal text-slate-400">(PVT) LTD</span>

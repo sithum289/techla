@@ -12,8 +12,8 @@ export default function Navbar() {
         
         {/* Brand Logo */}
         <a href="#home" className="flex items-center gap-3 group">
-          <div className="relative w-11 h-11 flex items-center justify-center rounded-xl bg-gradient-to-br from-techla-500/15 dark:from-techla-500/20 to-cyanGlow/10 border border-techla-500/30 group-hover:border-techla-400 transition-all shadow-[0_0_20px_rgba(0,114,255,0.2)]">
-            <TechlaLogo className="w-7 h-7 drop-shadow-[0_2px_10px_rgba(0,114,255,0.7)]" />
+          <div className="relative w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-techla-500/15 dark:from-techla-500/20 to-cyanGlow/10 border border-techla-500/30 group-hover:border-techla-400 transition-all p-1 shadow-[0_0_20px_rgba(0,114,255,0.25)]">
+            <TechlaLogo className="w-full h-full" />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
