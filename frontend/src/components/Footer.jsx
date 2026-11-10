@@ -38,13 +38,14 @@ export default function Footer() {
 
           {/* Solutions Links */}
           <div className="space-y-3">
-            <h4 className="font-heading text-sm font-bold text-white uppercase tracking-wider font-tech">IT Solutions</h4>
-            <ul className="space-y-2">
-              <li><a href="#solutions" className="hover:text-cyanGlow transition-colors">Enterprise Networking</a></li>
-              <li><a href="#solutions" className="hover:text-cyanGlow transition-colors">Server Virtualization</a></li>
-              <li><a href="#solutions" className="hover:text-cyanGlow transition-colors">Cloud Migrations & M365</a></li>
-              <li><a href="#solutions" className="hover:text-cyanGlow transition-colors">CCTV & Biometrics</a></li>
-              <li><a href="#solutions" className="hover:text-cyanGlow transition-colors">POS & Custom Software</a></li>
+            <h4 className="font-heading text-sm font-bold text-white uppercase tracking-wider font-tech">Digital & IT Services</h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li><a href="#solutions-banner" className="hover:text-cyanGlow transition-colors">Web Page & Website Development</a></li>
+              <li><a href="#solutions-banner" className="hover:text-cyanGlow transition-colors">Custom POS & Inventory Software</a></li>
+              <li><a href="#solutions-banner" className="hover:text-cyanGlow transition-colors">Mobile App Development (Android/iOS)</a></li>
+              <li><a href="#solutions-banner" className="hover:text-cyanGlow transition-colors">Photo & Video Editing Production</a></li>
+              <li><a href="#solutions-banner" className="hover:text-cyanGlow transition-colors">Social Media Marketing & Meta Ads</a></li>
+              <li><a href="#solutions-banner" className="hover:text-cyanGlow transition-colors">CCTV Security & Smart Setup</a></li>
             </ul>
           </div>
 

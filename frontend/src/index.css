@@ -170,3 +170,24 @@ input:focus, select:focus, textarea:focus {
 .animate-fadeIn {
   animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+
+/* Infinite Marquee Animation for Parts Ticker */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

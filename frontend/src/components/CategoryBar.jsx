@@ -1,14 +1,14 @@
 import React from 'react';
 
 const CATEGORIES = [
-  { id: 'all', name: 'All Products', icon: 'fa-layer-group', count: '50+ Items' },
-  { id: 'gpu', name: 'Graphics Cards', icon: 'fa-gamepad', count: 'RTX 40 / RX 7000' },
-  { id: 'cpu', name: 'Processors', icon: 'fa-microchip', count: 'Intel & AMD' },
-  { id: 'ram-ssd', name: 'RAM & NVMe SSD', icon: 'fa-memory', count: 'DDR5 & Gen4/5' },
-  { id: 'motherboard', name: 'Motherboards', icon: 'fa-chess-board', count: 'B650, Z790, X670' },
-  { id: 'psu-case', name: 'Cases & Power Supplies', icon: 'fa-plug', count: '750W-1200W & ARGB' },
-  { id: 'monitors', name: 'Gaming Monitors', icon: 'fa-desktop', count: '180Hz - 240Hz IPS' },
-  { id: 'peripherals', name: 'Keyboards & Mice', icon: 'fa-keyboard', count: 'Wireless / RGB' },
+  { id: 'all', name: 'All Products', icon: 'fa-layer-group', count: 'Full Catalog' },
+  { id: 'cctv', name: 'CCTV Surveillance', icon: 'fa-camera-security', count: 'Hikvision / Dahua' },
+  { id: 'gpu', name: 'Graphics Cards', icon: 'fa-gamepad', count: 'RTX 40 / AMD' },
+  { id: 'cpu', name: 'Processors (CPU)', icon: 'fa-microchip', count: 'Intel & Ryzen' },
+  { id: 'ram-ssd', name: 'RAM & NVMe Storage', icon: 'fa-memory', count: 'DDR4/5 & SSDs' },
+  { id: 'motherboard', name: 'Motherboards', icon: 'fa-chess-board', count: 'B650, Z790, H610' },
+  { id: 'monitors', name: 'Monitors & Displays', icon: 'fa-desktop', count: 'Gaming & Work' },
+  { id: 'networking', name: 'Routers & Network', icon: 'fa-network-wired', count: 'UniFi / TP-Link' },
 ];
 
 export default function CategoryBar({ activeCategory, setActiveCategory }) {
@@ -20,18 +20,18 @@ export default function CategoryBar({ activeCategory, setActiveCategory }) {
           <div>
             <h3 className="font-heading text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-techla-500 animate-pulse" />
-              Shop by Category
+              Computer Parts & CCTV Sourcing Categories
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Select a component category to filter our certified in-stock hardware
+              Select a category to view verified items available for immediate order & delivery
             </p>
           </div>
           <span className="text-xs font-bold text-techla-600 dark:text-cyanGlow hidden sm:block">
-            100% Genuine Boxed Stock
+            Official Warranty Included
           </span>
         </div>
 
-        {/* Categories Grid / Scroll */}
+        {/* Categories Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
@@ -67,4 +67,3 @@ export default function CategoryBar({ activeCategory, setActiveCategory }) {
     </section>
   );
 }
-
