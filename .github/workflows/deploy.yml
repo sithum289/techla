@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  # 1. FRONTEND DEPLOYMENT (techla.lk -> public_html)
+  # 1. FRONTEND DEPLOYMENT (techla.lk)
   deploy-frontend:
     name: Build & Deploy Frontend (techla.lk)
     runs-on: ubuntu-latest
@@ -27,14 +27,14 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-      - name: 🚀 Sync Frontend to public_html
+      - name: 🚀 Sync Frontend Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: frontend/dist/
-          server-dir: public_html/
+          server-dir: ./
           dangerous-clean-slate: false
 
   # 2. BACKEND DEPLOYMENT (techlabackend.techla.lk)
@@ -51,20 +51,20 @@ jobs:
         with:
           node-version: 20
 
-      - name: 📦 Install Backend & Generate Prisma
+      - name: 📦 Install Backend Dependencies & Generate Prisma
         working-directory: backend
         run: |
           npm install
           npx prisma generate
 
-      - name: 🚀 Sync Backend to Subdomain Folder
+      - name: 🚀 Sync Backend Files to Subdomain
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username: ${{ secrets.FTP_BACKEND_USERNAME }}
+          password: ${{ secrets.FTP_BACKEND_PASSWORD }}
           local-dir: backend/
-          server-dir: techlabackend.techla.lk/
+          server-dir: ./
           dangerous-clean-slate: false
           exclude: |
             **/.git*
