@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext';
 import ProductDetailModal from './ProductDetailModal';
 import QuotationModal from './QuotationModal';
 import { STORE_CATEGORIES } from '../constants/categories';
+import { API_BASE_URL } from '../constants/api';
 
 export default function HardwareStore({ activeCategory, setActiveCategory, searchQuery }) {
   const { addToCart, checkoutWhatsApp, setIsCartOpen } = useCart();
@@ -24,7 +25,7 @@ export default function HardwareStore({ activeCategory, setActiveCategory, searc
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/products');
+      const res = await fetch(`${API_BASE_URL}/products`);
       if (res.ok) {
         const data = await res.json();
         setDbProducts(data);

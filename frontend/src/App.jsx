@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
+import MobileQuickCategoryBar from './components/MobileQuickCategoryBar';
 import ShopHero from './components/ShopHero';
 import LivePartsMarquee from './components/LivePartsMarquee';
 import CategoryBar from './components/CategoryBar';
@@ -43,6 +44,12 @@ function StoreFront() {
 
       {/* Sliding Order Tray */}
       <CartDrawer />
+
+      {/* MOBILE ONLY: Instant Sticky Quick-Category Bar at the very top */}
+      <MobileQuickCategoryBar
+        activeCategory={activeCategory}
+        onSelectCategory={handleSelectCategory}
+      />
 
       <main className="relative z-10">
         {/* 1. Buying & Selling Hero Banner */}

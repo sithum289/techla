@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { STORE_CATEGORIES } from '../constants/categories';
 import QuotationModal from './QuotationModal';
+import { compressAndOptimizeImage } from '../utils/imageOptimizer';
 
 export default function AdminDashboard() {
   const { user, token, isAdmin, loading: authLoading } = useAuth();
@@ -32,6 +33,8 @@ export default function AdminDashboard() {
   // New Product Form State
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [compressingImage, setCompressingImage] = useState(false);
+  const [imageCompressionInfo, setImageCompressionInfo] = useState(null);
 
   // Settings & Security State
   const [siteSettings, setSiteSettings] = useState({
@@ -590,16 +593,86 @@ export default function AdminDashboard() {
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider mb-1">Cover Image URL *</label>
-                  <input
-                    type="url"
-                    required
-                    placeholder="https://images.unsplash.com/... or image link"
-                    value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs"
-                  />
+                {/* SMART COMPRESSED IMAGE UPLOAD + URL INPUT */}
+                <div className="space-y-3 p-4 rounded-2xl bg-slate-100/70 dark:bg-white/5 border border-slate-200 dark:border-white/10">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                      <i className="fa-solid fa-file-zipper text-techla-500" />
+                      <span>Product Cover Image (Auto-Compress to WebP) *</span>
+                    </label>
+                    <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
+                      ⚡ 5MB Photos auto-shrink down to &lt;90KB
+                    </span>
+                  </div>
+
+                  {/* File Upload with Auto WebP Compressor */}
+                  <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+                    <label className="cursor-pointer px-4 py-2.5 rounded-xl bg-techla-600 hover:bg-techla-500 text-white font-bold text-xs flex items-center gap-2 shadow-md transition-all active:scale-95 shrink-0">
+                      <i className="fa-solid fa-upload" />
+                      <span>{compressingImage ? 'Optimizing & Compressing...' : 'Upload Image from Device'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        disabled={compressingImage}
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          setCompressingImage(true);
+                          try {
+                            const result = await compressAndOptimizeImage(file);
+                            setFormData((prev) => ({
+                              ...prev,
+                              image: result.dataUrl,
+                            }));
+                            setImageCompressionInfo(result);
+                          } catch (err) {
+                            alert('Failed to compress image: ' + err.message);
+                          } finally {
+                            setCompressingImage(false);
+                          }
+                        }}
+                      />
+                    </label>
+
+                    <span className="text-xs text-slate-400 font-semibold">OR enter external Image URL below:</span>
+                  </div>
+
+                  {/* Compression Stats Feedback */}
+                  {imageCompressionInfo && (
+                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400 text-xs flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <i className="fa-solid fa-circle-check text-sm" />
+                        <span>
+                          <strong>Optimized:</strong> {imageCompressionInfo.originalSizeKB} KB → <strong>{imageCompressionInfo.compressedSizeKB} KB</strong> ({imageCompressionInfo.savings}% Size Reduction!)
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500 text-white px-2 py-0.5 rounded">
+                        Next-Gen WebP
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Image URL Input & Preview */}
+                  <div className="flex gap-3 items-center">
+                    <input
+                      type="text"
+                      required
+                      placeholder="https://... or auto-filled upon uploading file"
+                      value={formData.image}
+                      onChange={(e) => {
+                        setFormData({ ...formData, image: e.target.value });
+                        setImageCompressionInfo(null);
+                      }}
+                      className="flex-1 px-3.5 py-2 rounded-xl bg-white dark:bg-[#071126] border border-slate-200 dark:border-white/10 text-xs"
+                    />
+
+                    {formData.image && (
+                      <div className="w-12 h-12 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden bg-white shrink-0 p-1">
+                        <img src={formData.image} alt="Preview" className="w-full h-full object-contain" />
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <div>
