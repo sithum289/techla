@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  phone     String?
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orders    Order[]
+}
+
+model Product {
+  id            String      @id @default(uuid())
+  title         String
+  category      String      // Mobile Phones, Laptops, Accessories, Electronics, CCTV Systems, PC Parts, Home Appliances
+  price         Float       // Selling / Discounted Price
+  originalPrice Float?      // Strikethrough Regular Price (e.g. was 150,000 now 135,000)
+  discount      Int?        // e.g. 10% OFF
+  stock         Int         @default(0)
+  inStock       Boolean     @default(true) // In Stock or Sold Out
+  salesCount    Int         @default(0)    // Auto calculated on orders to rank Most Popular / Best Seller
+  viewsCount    Int         @default(0)    // Popularity view counter
+  images        String[]    @default([]) // Multiple images array
+  image         String?     // Primary cover image
+  brand         String?     // Apple, Samsung, Xiaomi, Asus, Dell, Singer, LG etc.
+  description   String?
+  specs         Json?       // Optional specs key-values
+  condition     String?     @default("Brand New") // Brand New, Official Company Warranty, etc.
+  featured      Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  orderItems    OrderItem[]
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  userId          String?     // null if placed by Guest
+  user            User?       @relation(fields: [userId], references: [id])
+  customerName    String
+  customerPhone   String
+  customerEmail   String?
+  shippingAddress String
+  totalAmount     Float
+  status          OrderStatus @default(PENDING)
+  notes           String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  title     String
+  price     Float
+  quantity  Int
+}
+
+model SiteSetting {
+  id              String   @id @default("global_settings")
+  hotlinePhone    String   @default("+94 77 123 4567")
+  whatsappNumber  String   @default("94771234567")
+  storeEmail      String   @default("sales@techla.lk")
+  noticeBanner    String   @default("Island-wide Cash on Delivery | Direct Authorized Agent Barcode Warranty | Showroom Pickup Available")
+  showroomAddress String   @default("Colombo, Sri Lanka")
+  updatedAt       DateTime @updatedAt
+}

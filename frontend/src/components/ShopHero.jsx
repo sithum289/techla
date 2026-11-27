@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ShopHero() {
   const requestQuoteWhatsApp = () => {
-    const msg = `Hello TECHLA! 🚀%0AI would like to get a price quote and availability check for computer parts / CCTV equipment:`;
+    const msg = `Hello TECHLA! 🚀%0AI would like to inquire about products, electronics or home appliances availability:`;
     window.open(`https://wa.me/94771234567?text=${msg}`, '_blank');
   };
 
@@ -22,43 +22,43 @@ export default function ShopHero() {
           {/* Left Hero Details */}
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold tracking-widest uppercase backdrop-blur-md">
-              <i className="fa-solid fa-handshake text-xs" /> Verified Buying & Selling Partner • Sri Lanka
+              <i className="fa-solid fa-store text-xs" /> Authorized Retail & Sourcing Partner • Sri Lanka
             </div>
 
             <h1 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
-              GENUINE COMPUTER &{' '}
+              ELECTRONICS, HOME APPLIANCES &{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-techla-400 via-cyan-400 to-blue-300">
-                CCTV HARDWARE SOURCING
+                IT HARDWARE SOURCING
               </span>
             </h1>
 
             <p className="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
-              Looking for computer parts, custom gaming rigs, or commercial CCTV surveillance systems? TECHLA connects you directly with authorized agent distributors at verified wholesale & retail market rates. Official warranty guaranteed.
+              From Refrigerators, Washing Machines & Smart 4K TVs to Mobile Phones, Laptops and Custom PC & CCTV Systems. TECHLA connects you directly with authorized agent distributors at verified wholesale & retail prices with official barcode warranty.
             </p>
 
-            {/* Model Highlights */}
+            {/* Department Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3 hover:border-cyan-400/40 transition-colors">
-                <i className="fa-solid fa-tags text-cyan-400 text-lg" />
+                <i className="fa-solid fa-couch text-cyan-400 text-lg" />
                 <div>
-                  <h5 className="font-bold text-white">Best Market Rates</h5>
-                  <span className="text-[10px] text-slate-400">Direct agent sourcing</span>
+                  <h5 className="font-bold text-white">Home Appliances</h5>
+                  <span className="text-[10px] text-slate-400">Fridges, Washers, ACs</span>
                 </div>
               </div>
 
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3 hover:border-cyan-400/40 transition-colors">
-                <i className="fa-solid fa-camera-security text-emerald-400 text-lg" />
+                <i className="fa-solid fa-mobile-screen text-emerald-400 text-lg" />
                 <div>
-                  <h5 className="font-bold text-white">CCTV & PC Parts</h5>
-                  <span className="text-[10px] text-slate-400">Hikvision, Dahua, ASUS</span>
+                  <h5 className="font-bold text-white">Phones & Laptops</h5>
+                  <span className="text-[10px] text-slate-400">Apple, Samsung, ASUS</span>
                 </div>
               </div>
 
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex items-center gap-3 hover:border-cyan-400/40 transition-colors">
-                <i className="fa-solid fa-certificate text-amber-400 text-lg" />
+                <i className="fa-solid fa-shield-check text-amber-400 text-lg" />
                 <div>
                   <h5 className="font-bold text-white">100% Genuine</h5>
-                  <span className="text-[10px] text-slate-400">Official agent warranty</span>
+                  <span className="text-[10px] text-slate-400">Official Company Warranty</span>
                 </div>
               </div>
             </div>
@@ -66,11 +66,11 @@ export default function ShopHero() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
-                href="#store"
+                href="#categories"
                 className="px-7 py-4 rounded-xl bg-gradient-to-r from-techla-500 to-cyan-500 hover:from-techla-600 hover:to-cyan-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-techla-500/30 flex items-center gap-2.5 transition-all transform hover:scale-105"
               >
                 <i className="fa-solid fa-boxes-stacked" />
-                <span>Explore Available Items</span>
+                <span>Browse Store Catalog</span>
               </a>
 
               <button
@@ -78,53 +78,58 @@ export default function ShopHero() {
                 className="px-7 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/30 flex items-center gap-2.5 transition-all"
               >
                 <i className="fa-brands fa-whatsapp text-base" />
-                <span>Request Custom Part / Price</span>
+                <span>Request Custom Item / Price</span>
               </button>
             </div>
           </div>
 
           {/* Right Sourcing Concierge Box */}
-          <div className="lg:col-span-5 relative flex items-center justify-center">
-            <div className="w-full rounded-3xl bg-white/5 border border-white/15 p-6 sm:p-8 backdrop-blur-2xl shadow-2xl space-y-4">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <span className="text-xs font-bold text-white flex items-center gap-2">
-                  <i className="fa-solid fa-bolt text-amber-400" /> Sourcing Concierge
-                </span>
-                <span className="text-[10px] px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">
-                  Same-Day Availability
-                </span>
-              </div>
-
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Can't find a specific GPU, Motherboard or CCTV camera model in our list? Send us the model number and we'll source it for you with official agent warranty.
-              </p>
-
-              <div className="space-y-2.5 text-xs">
-                <div className="flex items-center gap-2.5 text-slate-200">
-                  <i className="fa-solid fa-circle-check text-cyan-400 text-sm" />
-                  <span>Graphics Cards, CPUs & High-Speed RAM</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-slate-200">
-                  <i className="fa-solid fa-circle-check text-cyan-400 text-sm" />
-                  <span>IP / HD 4K CCTV Cameras & DVR / NVR Recorders</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-slate-200">
-                  <i className="fa-solid fa-circle-check text-cyan-400 text-sm" />
-                  <span>Official Distributor Barcode Serial Warranty</span>
-                </div>
-              </div>
-
-              <a
-                href="#custom-order"
-                className="block text-center w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 hover:border-cyan-400 text-white font-bold text-xs uppercase tracking-wider transition-all"
-              >
-                Inquire Specific Part Model
-              </a>
+          <div className="lg:col-span-5 bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5 uppercase tracking-wider">
+                <i className="fa-solid fa-bolt" /> Sourcing Concierge
+              </span>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                Island-wide Delivery
+              </span>
             </div>
+
+            <h3 className="font-heading text-lg sm:text-xl font-bold text-white mb-2">
+              Can't find a specific model or appliance?
+            </h3>
+            <p className="text-xs text-slate-300 leading-relaxed mb-4">
+              Send us any Phone, Laptop, Refrigerator, TV, Air Conditioner or Computer Part model number. We will source it directly from authorized agent importers with official barcode warranty.
+            </p>
+
+            <div className="space-y-2 text-xs text-slate-300 mb-6">
+              <div className="flex items-center gap-2">
+                <i className="fa-solid fa-circle-check text-cyan-400 text-[10px]" />
+                <span>Refrigerators, Inverter ACs, Washing Machines & Smart TVs</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <i className="fa-solid fa-circle-check text-cyan-400 text-[10px]" />
+                <span>Smartphones, Laptops, Gadgets & Accessories</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <i className="fa-solid fa-circle-check text-cyan-400 text-[10px]" />
+                <span>CCTV Surveillance Packages & Custom High-End PC Rigs</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <i className="fa-solid fa-circle-check text-cyan-400 text-[10px]" />
+                <span>Official Agent Serial Barcode Warranty Card</span>
+              </div>
+            </div>
+
+            <a
+              href="#custom-order"
+              className="w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+            >
+              <i className="fa-solid fa-magnifying-glass-dollar" />
+              <span>Inquire Specific Model</span>
+            </a>
           </div>
 
         </div>
-
       </div>
     </section>
   );

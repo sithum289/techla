@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import ShopHero from './components/ShopHero';
 import LivePartsMarquee from './components/LivePartsMarquee';
 import CategoryBar from './components/CategoryBar';
+import CuratedSections from './components/CuratedSections';
 import HardwareStore from './components/HardwareStore';
 import CustomSourcingSection from './components/CustomSourcingSection';
 import SolutionsBanner from './components/SolutionsBanner';
@@ -13,62 +16,94 @@ import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import WhatsAppFloating from './components/WhatsAppFloating';
 import BackgroundCanvas from './components/BackgroundCanvas';
+import AuthModal from './components/AuthModal';
+import AdminDashboard from './components/AdminDashboard';
 
-export default function App() {
+function StoreFront() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  return (
-    <CartProvider>
-      <div className="relative min-h-screen bg-slate-50 dark:bg-[#050813] text-slate-900 dark:text-slate-100 font-sans selection:bg-techla-500 selection:text-white overflow-x-hidden transition-colors duration-300">
-        
-        {/* Dynamic Network Canvas */}
-        <BackgroundCanvas />
+  const handleSelectCategory = (catId) => {
+    setActiveCategory(catId);
+    const storeEl = document.getElementById('store');
+    if (storeEl) storeEl.scrollIntoView({ behavior: 'smooth' });
+  };
 
-        {/* Navigation */}
-        <Navbar
-          onSearchChange={setSearchQuery}
+  return (
+    <div className="relative min-h-screen bg-slate-50 dark:bg-[#050813] text-slate-900 dark:text-slate-100 font-sans selection:bg-techla-500 selection:text-white overflow-x-hidden transition-colors duration-300">
+      {/* Dynamic Network Canvas */}
+      <BackgroundCanvas />
+
+      {/* Navigation with Sense.lk Style Mega Dropdown */}
+      <Navbar
+        onSearchChange={setSearchQuery}
+        searchQuery={searchQuery}
+        onSelectCategory={handleSelectCategory}
+      />
+
+      {/* Sliding Order Tray */}
+      <CartDrawer />
+
+      <main className="relative z-10">
+        {/* 1. Buying & Selling Hero Banner */}
+        <ShopHero />
+
+        {/* 2. Live Verified Product Ticker */}
+        <LivePartsMarquee />
+
+        {/* 3. Sense.lk Style Curated Promos & Deals (Hot Deals, Home Appliances, Tech) */}
+        <CuratedSections onSelectCategory={handleSelectCategory} />
+
+        {/* 4. Category Selector Bar */}
+        <CategoryBar
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+        />
+
+        {/* 5. Sense.lk Style Sourcing Catalog with Left Filter Sidebar */}
+        <HardwareStore
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
           searchQuery={searchQuery}
         />
 
-        {/* Sliding Order Inquiry Tray */}
-        <CartDrawer />
+        {/* 6. Custom Sourcing Form */}
+        <CustomSourcingSection />
 
-        <main className="relative z-10">
-          {/* 1. Buying & Selling Hero Banner */}
-          <ShopHero />
+        {/* 7. Secondary Solutions Banner */}
+        <SolutionsBanner />
 
-          {/* 2. Live Infinite Scrolling Computer & CCTV Parts Ticker */}
-          <LivePartsMarquee />
+        {/* 8. About Pvt Ltd & Warranty Assurance */}
+        <AboutPvtLtd />
 
-          {/* 3. Category Selector (CCTV, GPUs, CPUs, SSDs, etc.) */}
-          <CategoryBar
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-          />
+        {/* 9. Direct Inquiry / Consultation Form */}
+        <ContactForm />
+      </main>
 
-          {/* 3. Computer Parts & CCTV Sourcing Catalog */}
-          <HardwareStore
-            activeCategory={activeCategory}
-            searchQuery={searchQuery}
-          />
+      {/* Footer */}
+      <Footer />
 
-          {/* 4. "Don't See What You Need?" Custom Sourcing Form */}
-          <CustomSourcingSection />
+      {/* Floating Speed Contact Bubble */}
+      <WhatsAppFloating />
+    </div>
+  );
+}
 
-          {/* 5. Secondary IT Solutions & CCTV Installation Banner */}
-          <SolutionsBanner />
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          {/* Universal Auth Popup Modal */}
+          <AuthModal />
 
-          {/* 6. Genuine Warranty & Sourcing Model Guarantee */}
-          <AboutPvtLtd />
-
-          {/* 7. Contact & Quotation Form */}
-          <ContactForm />
-        </main>
-
-        <Footer />
-        <WhatsAppFloating />
-      </div>
-    </CartProvider>
+          <Routes>
+            <Route path="/" element={<StoreFront />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
