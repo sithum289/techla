@@ -27,12 +27,12 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-      - name: 🚀 Sync Frontend to public_html
+      - name: 🚀 Sync Frontend Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_FRONTEND_USERNAME }}
-          password: ${{ secrets.FTP_FRONTEND_PASSWORD }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: frontend/dist/
           server-dir: ./
           dangerous-clean-slate: false
