@@ -112,7 +112,7 @@ export default function AuthModal() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@techla.lk or user@gmail.com"
+              placeholder="user@gmail.com"
               className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-techla-500"
             />
           </div>

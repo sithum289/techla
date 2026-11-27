@@ -169,20 +169,24 @@ export default function HardwareStore({ activeCategory, setActiveCategory, searc
           <aside
             className={`lg:col-span-3 space-y-6 ${
               mobileFilterOpen
-                ? 'fixed inset-0 z-50 bg-white dark:bg-[#071126] p-6 overflow-y-auto block'
+                ? 'fixed inset-0 z-[250] bg-white dark:bg-[#071126] p-5 sm:p-6 overflow-y-auto block animate-in slide-in-from-bottom-5 duration-200'
                 : 'hidden lg:block'
             }`}
           >
             {mobileFilterOpen && (
-              <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10 lg:hidden">
-                <h3 className="font-heading font-black text-lg text-slate-900 dark:text-white">
-                  Filter Products
-                </h3>
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10 lg:hidden sticky top-0 bg-white/95 dark:bg-[#071126]/95 backdrop-blur-md z-20">
+                <div className="flex items-center gap-2">
+                  <i className="fa-solid fa-sliders text-techla-500" />
+                  <h3 className="font-heading font-black text-base text-slate-900 dark:text-white">
+                    Filter & Refine Products
+                  </h3>
+                </div>
                 <button
                   onClick={() => setMobileFilterOpen(false)}
-                  className="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-200 flex items-center justify-center"
+                  className="px-3 py-1.5 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 font-bold text-xs flex items-center gap-1.5"
                 >
-                  <i className="fa-solid fa-xmark" />
+                  <i className="fa-solid fa-xmark text-sm" />
+                  <span>Done</span>
                 </button>
               </div>
             )}
@@ -317,12 +321,15 @@ export default function HardwareStore({ activeCategory, setActiveCategory, searc
             </div>
 
             {mobileFilterOpen && (
-              <button
-                onClick={() => setMobileFilterOpen(false)}
-                className="w-full py-3 rounded-xl bg-techla-600 text-white font-bold text-xs shadow-lg uppercase lg:hidden"
-              >
-                Apply Filters ({filteredProducts.length} Results)
-              </button>
+              <div className="sticky bottom-0 bg-white/95 dark:bg-[#071126]/95 backdrop-blur-md pt-2 pb-1 border-t border-slate-200 dark:border-white/10 lg:hidden">
+                <button
+                  onClick={() => setMobileFilterOpen(false)}
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-techla-600 to-blue-600 hover:from-techla-500 hover:to-blue-500 text-white font-extrabold text-xs shadow-xl uppercase tracking-wider flex items-center justify-center gap-2"
+                >
+                  <i className="fa-solid fa-check" />
+                  <span>View {filteredProducts.length} Filtered Results</span>
+                </button>
+              </div>
             )}
           </aside>
 

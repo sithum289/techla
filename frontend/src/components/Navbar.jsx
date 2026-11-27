@@ -104,9 +104,10 @@ export default function Navbar({ onSearchChange, searchQuery, onSelectCategory }
 
           {/* Mega Menu Dropdown */}
           {megaMenuOpen && (
-            <div className="absolute top-12 left-0 w-80 bg-white dark:bg-[#071126] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl p-3 z-50 animate-in fade-in zoom-in-95 space-y-1">
-              <div className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 px-3 py-1">
-                Browse Departments
+            <div className="absolute top-12 left-0 w-80 max-h-[75vh] overflow-y-auto bg-white dark:bg-[#071126] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 animate-in fade-in zoom-in-95 space-y-1 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-white/20">
+              <div className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 px-3 py-1.5 sticky top-0 bg-white/95 dark:bg-[#071126]/95 backdrop-blur-sm z-10 border-b border-slate-100 dark:border-white/5 flex items-center justify-between">
+                <span>Browse Departments</span>
+                <span className="text-[9px] lowercase font-normal opacity-70">scroll for more ↓</span>
               </div>
               <button
                 onClick={() => handleCategoryClick('all')}
@@ -119,7 +120,7 @@ export default function Navbar({ onSearchChange, searchQuery, onSelectCategory }
                 <button
                   key={cat.id}
                   onClick={() => handleCategoryClick(cat.id)}
-                  className="w-full text-left px-3 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-techla-500 hover:text-white flex items-center gap-2.5 transition-colors"
+                  className="w-full text-left px-3 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 hover:bg-techla-500 hover:text-white flex items-center gap-2.5 transition-colors group"
                 >
                   <i className={`fa-solid ${cat.icon} w-4 text-center text-techla-500 group-hover:text-white`} />
                   <span className="truncate">{cat.name}</span>
