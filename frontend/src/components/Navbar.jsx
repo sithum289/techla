@@ -130,25 +130,34 @@ export default function Navbar({ onSearchChange, searchQuery, onSelectCategory }
           )}
         </div>
 
-        {/* Global Search Bar */}
-        <div className="hidden md:flex flex-1 max-w-md mx-2">
-          <div className="relative w-full">
+        {/* Sense.lk Style Prominent Center Search Bar (Desktop & Tablet) */}
+        <div className="hidden md:flex flex-1 max-w-2xl mx-4">
+          <div className="relative w-full flex items-center">
             <input
               type="text"
               value={searchQuery || ''}
               onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
-              placeholder="Search Samsung Fridge, LG Washer, RTX 4060, iPhone..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-techla-500 dark:focus:border-cyan-400 focus:ring-2 focus:ring-techla-500/20 transition-all"
+              placeholder="Search by Product Name, Model, Brand (e.g. Singer, Samsung, RTX 4060, S24, iPhone)..."
+              className="w-full pl-11 pr-24 py-2.5 rounded-full bg-slate-100 dark:bg-white/10 border-2 border-techla-500/40 dark:border-cyan-500/40 text-xs font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-techla-500 dark:focus:border-cyan-400 focus:ring-4 focus:ring-techla-500/15 shadow-inner transition-all"
             />
-            <i className="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs" />
-            {searchQuery && (
+            <i className="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-techla-500 dark:text-cyan-400 text-sm" />
+            
+            <div className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
+              {searchQuery && (
+                <button
+                  onClick={() => onSearchChange && onSearchChange('')}
+                  className="w-6 h-6 rounded-full bg-slate-200 dark:bg-white/10 text-slate-500 hover:text-rose-500 flex items-center justify-center text-xs"
+                >
+                  <i className="fa-solid fa-xmark" />
+                </button>
+              )}
               <button
-                onClick={() => onSearchChange && onSearchChange('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xs"
+                type="button"
+                className="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-techla-600 to-blue-600 hover:from-techla-500 hover:to-blue-500 text-white font-bold text-[11px] shadow-md transition-all active:scale-95"
               >
-                <i className="fa-solid fa-xmark" />
+                Search
               </button>
-            )}
+            </div>
           </div>
         </div>
 
@@ -235,6 +244,37 @@ export default function Navbar({ onSearchChange, searchQuery, onSelectCategory }
           >
             <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`} />
           </button>
+        </div>
+      </div>
+
+      {/* SENSE.LK STYLE DEDICATED MOBILE FULL-WIDTH SEARCH BAR (Always docked under header on phone) */}
+      <div className="md:hidden px-3.5 py-2.5 bg-slate-100/90 dark:bg-[#050b18]/95 border-t border-slate-200 dark:border-white/10">
+        <div className="relative w-full flex items-center">
+          <input
+            type="text"
+            value={searchQuery || ''}
+            onChange={(e) => onSearchChange && onSearchChange(e.target.value)}
+            placeholder="Search Products, Brands, Models (e.g. Singer, Samsung, RTX)..."
+            className="w-full pl-10 pr-20 py-2.5 rounded-full bg-white dark:bg-white/10 border-2 border-techla-500/50 dark:border-cyan-400/50 text-xs font-semibold text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-techla-600 focus:ring-2 focus:ring-techla-500/20 shadow-md transition-all"
+          />
+          <i className="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-techla-600 dark:text-cyan-400 text-sm" />
+          
+          <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center gap-1">
+            {searchQuery && (
+              <button
+                onClick={() => onSearchChange && onSearchChange('')}
+                className="w-6 h-6 rounded-full bg-slate-200 dark:bg-white/10 text-slate-500 hover:text-rose-500 flex items-center justify-center text-xs"
+              >
+                <i className="fa-solid fa-xmark" />
+              </button>
+            )}
+            <button
+              type="button"
+              className="px-3 py-1 rounded-full bg-techla-600 text-white font-bold text-[11px] shadow transition-all active:scale-95"
+            >
+              Find
+            </button>
+          </div>
         </div>
       </div>
 
