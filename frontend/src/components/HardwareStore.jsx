@@ -4,6 +4,7 @@ import ProductDetailModal from './ProductDetailModal';
 import QuotationModal from './QuotationModal';
 import { STORE_CATEGORIES } from '../constants/categories';
 import { API_BASE_URL } from '../constants/api';
+import { FALLBACK_PRODUCTS } from '../constants/fallbackProducts';
 
 export default function HardwareStore({ activeCategory, setActiveCategory, searchQuery }) {
   const { addToCart, checkoutWhatsApp, setIsCartOpen } = useCart();
@@ -28,10 +29,16 @@ export default function HardwareStore({ activeCategory, setActiveCategory, searc
       const res = await fetch(`${API_BASE_URL}/products`);
       if (res.ok) {
         const data = await res.json();
-        setDbProducts(data);
+        if (Array.isArray(data) && data.length > 0) {
+          setDbProducts(data);
+          return;
+        }
       }
+      // If backend returns empty or non-200, use robust fallback catalog
+      setDbProducts(FALLBACK_PRODUCTS);
     } catch (err) {
-      console.error('Failed to load products:', err);
+      console.warn('Backend unavailable, using catalog fallback:', err);
+      setDbProducts(FALLBACK_PRODUCTS);
     } finally {
       setLoading(false);
     }

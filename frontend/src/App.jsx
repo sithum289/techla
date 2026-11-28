@@ -49,6 +49,8 @@ function StoreFront() {
       <MobileQuickCategoryBar
         activeCategory={activeCategory}
         onSelectCategory={handleSelectCategory}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
       />
 
       <main className="relative z-10">
